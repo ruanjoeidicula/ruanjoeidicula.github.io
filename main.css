@@ -1,0 +1,404 @@
+/* ==========================================================================
+   RUAN JOE IDICULA — DARK MODE & CINEMATIC DESIGN SYSTEM
+   Theme: Deep dark grays / pure blacks with glowing neon accents & high-contrast imagery
+   Tailored for: Technology Builders, Videographers, Creatives & UI/UX Designers
+   ========================================================================== */
+
+/* @import Google Fonts: Bodoni Moda, Syne, Instrument Serif, Plus Jakarta Sans, JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@600;700;800&display=swap');
+
+:root {
+  /* --- Cinematic Obsidian & Pure Void Palette --- */
+  --bg-primary: #070709;          /* Pure cinematic black void */
+  --bg-secondary: #0D0D12;        /* Deep slate backdrop */
+  --bg-card: #121218;             /* Carbon glass card surface */
+  --bg-card-subtle: #171720;      /* Inset container / HUD panel */
+  --bg-accent-tint: rgba(255, 59, 48, 0.08);
+
+  --text-primary: #FFFFFF;        /* Ultra high-contrast pure white */
+  --text-secondary: #D4D4D8;      /* Crisp platinum silver body */
+  --text-muted: #8E8E93;          /* Cinematic timecode / caption gray */
+  --text-dim: #52525B;            /* Subtle HUD wireframe label */
+
+  --border-color: rgba(255, 255, 255, 0.09); /* Fine illuminated glass border */
+  --border-highlight: rgba(255, 255, 255, 0.22);
+  --border-dark: #FFFFFF;
+  
+  /* Glowing Neon Accents */
+  --accent-color: #FF3B30;        /* Glowing Cinema Red / Anamorphic Vermilion */
+  --accent-hover: #FF5247;
+  --accent-glow: 0 0 22px rgba(255, 59, 48, 0.55), 0 0 45px rgba(255, 59, 48, 0.25);
+  
+  --accent-cyan: #00F0FF;         /* Glowing Anamorphic Cyan */
+  --accent-cyan-glow: 0 0 20px rgba(0, 240, 255, 0.55);
+  
+  --accent-amber: #FFB300;        /* Tungsten Lamp Amber */
+  --accent-amber-glow: 0 0 20px rgba(255, 179, 0, 0.5);
+
+  --font-editorial-headline: 'Bodoni Moda', Georgia, serif;
+  --font-display: 'Syne', -apple-system, sans-serif;
+  --font-editorial-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --max-width: 1440px;
+  --gutter: 2.25rem;
+  --header-height: 76px;
+
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Studio Noir Contrast Mode */
+[data-theme="studio"] {
+  --bg-primary: #0A0A0C;
+  --bg-secondary: #121216;
+  --bg-card: #181820;
+  --bg-card-subtle: #1F1F2A;
+  --accent-color: #00F0FF;
+  --accent-hover: #33F3FF;
+  --accent-glow: 0 0 24px rgba(0, 240, 255, 0.6), 0 0 50px rgba(0, 240, 255, 0.3);
+}
+
+/* ==========================================================================
+   CSS RESET & BASE CINEMATIC STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Cinematic Film Grain & Vignette Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: radial-gradient(#FFFFFF 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+/* Ambient Radial Glow Lighting in Background */
+body::after {
+  content: "";
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(255, 59, 48, 0.06) 0%, rgba(0, 240, 255, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   CINEMATIC TYPOGRAPHY & GLOW UTILITIES
+   ========================================================================== */
+.font-headline {
+  font-family: var(--font-editorial-headline);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-serif {
+  font-family: var(--font-editorial-serif);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-glow {
+  text-shadow: var(--accent-glow);
+}
+
+.text-glow-cyan {
+  text-shadow: var(--accent-cyan-glow);
+}
+
+/* Dramatic section headers */
+.editorial-title {
+  font-family: var(--font-editorial-headline);
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.editorial-subhead {
+  font-family: var(--font-editorial-serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.editorial-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(255, 59, 48, 0.4);
+}
+
+.editorial-tag::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+  border-radius: 50%;
+}
+
+/* Section Header Structure */
+.section-header-editorial {
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.section-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 8px rgba(255, 59, 48, 0.4);
+}
+
+.section-cat {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Container */
+.magazine-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+
+.section-padding {
+  padding-top: clamp(4.5rem, 8vw, 8rem);
+  padding-bottom: clamp(4.5rem, 8vw, 8rem);
+}
+
+/* ==========================================================================
+   SCROLL PROGRESS BAR
+   ========================================================================== */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-cyan));
+  box-shadow: 0 0 12px var(--accent-color);
+  z-index: 10000;
+  transition: width 0.05s linear;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.editorial-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #12121A;
+  color: #FFFFFF;
+  padding: 0.9rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 59, 48, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 4px solid var(--accent-color);
+  z-index: 10001;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.editorial-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   SCROLL REVEALS
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* ==========================================================================
+   CINEMATIC MARQUEE BANNER
+   ========================================================================== */
+.kinetic-marquee {
+  width: 100%;
+  overflow: hidden;
+  background-color: #0B0B10;
+  color: #FFFFFF;
+  padding: 1.15rem 0;
+  display: flex;
+  white-space: nowrap;
+  user-select: none;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.kinetic-marquee::before, .kinetic-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.kinetic-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 100%);
+}
+
+.kinetic-marquee::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg-primary) 0%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3.5rem;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.marquee-separator {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px var(--accent-color);
+  font-size: 1rem;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .marquee-track {
+    animation: none !important;
+  }
+}

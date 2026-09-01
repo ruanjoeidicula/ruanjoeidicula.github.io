@@ -1,0 +1,150 @@
+/* ==========================================================================
+   RUAN JOE IDICULA — DARK MODE & TECH (ASTROFY THEME)
+   Tailwind + DaisyUI inspired developer portfolio styling
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  --color-bg-base: #0f172a;       /* Slate 900 */
+  --color-bg-sidebar: #0b1120;    /* Slate 950 */
+  --color-bg-card: #1e293b;       /* Slate 800 */
+  --color-bg-card-hover: #334155; /* Slate 700 */
+  --color-border: #334155;
+  --color-primary: #38bdf8;      /* Sky 400 */
+  --color-primary-hover: #0ea5e9;
+  --color-accent: #10b981;       /* Emerald 500 */
+  --color-accent-purple: #a855f7;/* Purple 500 */
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+body {
+  background-color: #0b1120;
+  color: #f1f5f9;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Astrofy Badge Styles */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  background-color: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  background-color: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+}
+
+.tech-badge-emerald {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.tech-badge-emerald:hover {
+  background-color: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
+.tech-badge-purple {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.25);
+}
+
+.tech-badge-purple:hover {
+  background-color: rgba(168, 85, 247, 0.2);
+  border-color: #a855f7;
+}
+
+/* Timeline Dot & Line (Astrofy CV format) */
+.timeline-track {
+  position: relative;
+  border-left: 2px solid #334155;
+  padding-left: 1.5rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -0.45rem;
+  top: 0.35rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-color: #38bdf8;
+  border: 2px solid #0b1120;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+/* Card Glow Hover */
+.tech-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.tech-card:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.1);
+}
+
+/* Toast */
+.tech-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: #1e293b;
+  color: #f8fafc;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #38bdf8;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
